@@ -24,12 +24,15 @@ export function verifyApkHash() {
     const userVal = (document.getElementById('userHashInput')?.value || '').trim().toLowerCase().replace(/[^a-f0-9]/g, '');
     const resBox = document.getElementById('hashVerifyResult');
     if (!resBox) return;
-    if (userVal === OFFICIAL_APK_SHA256) {
+    if (userVal.length === 64 && userVal === OFFICIAL_APK_SHA256) {
         resBox.className = 'p-3 rounded-xl bg-emerald-950/70 border border-emerald-500/50 font-mono text-xs text-emerald-300';
         resBox.textContent = '✓ ПОДЛИННОСТЬ ПОДТВЕРЖДЕНА: SHA-256 совпадает с эталоном Zilore Files.';
+    } else if (userVal.length === 64) {
+        resBox.className = 'p-3 rounded-xl bg-rose-950/70 border border-rose-500/50 font-mono text-xs text-rose-300';
+        resBox.textContent = '✕ ВНИМАНИЕ: Хэш НЕ совпадает с официальной сборкой zilore.app!';
     } else {
-        resBox.className = 'p-3 rounded-xl bg-amber-950/70 border border-amber-500/50 font-mono text-xs text-amber-300';
-        resBox.textContent = 'Проверка SHA-256: введите 64-символьный хэш официальной сборки.';
+        resBox.className = 'p-3 rounded-xl bg-obsidian-950/70 border border-slate-800 font-mono text-xs text-slate-400';
+        resBox.textContent = 'Введите 64-символьный SHA-256 хэш или выберите APK-файл для локальной проверки.';
     }
 }
 

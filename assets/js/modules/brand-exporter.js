@@ -12,11 +12,3 @@ export function copyTextToClipboard(text, message) {
     navigator.clipboard?.writeText(text);
     showToast(message || 'Скопировано');
 }
-
-export function copyRoseConfigCommands() {
-    copyTextToClipboard('/welcome on\n/captcha on\n/lock apk\n/lock url\n/allowlist zilore.app', 'Команды защиты скопированы');
-}
-
-export function downloadSvgBrandAsset(type) {
-    showToast(`Аватар ${type} готов в папке assets/img/`);
-}

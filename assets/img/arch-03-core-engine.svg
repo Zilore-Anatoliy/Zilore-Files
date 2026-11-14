@@ -8,6 +8,7 @@
       .mono { font-family: 'JetBrains Mono', monospace; }
       @keyframes scsiFlow { from { stroke-dashoffset: 36; } to { stroke-dashoffset: 0; } }
       .scsi-bus { stroke-dasharray: 9 9; animation: scsiFlow 1s linear infinite; }
+      @media (prefers-reduced-motion: reduce) { .scsi-bus { animation: none !important; } }
     </style>
   </defs>
   <rect width="960" height="560" rx="20" fill="url(#bg3)"/>
@@ -16,7 +17,7 @@
     <rect width="912" height="54" rx="12" fill="#161B3A" stroke="#6366F1" stroke-width="1.5"/>
     <circle cx="26" cy="27" r="7" fill="#818CF8"/>
     <text x="46" y="26" fill="#FFFFFF" class="sans" font-size="16" font-weight="800">ЧАСТЬ 3. НИЗКОУРОВНЕВОЕ ЯДРО :core:fs-engine (VFS, USB SCSI, СЕТИ И КРИПТОСЕЙФ)</text>
-    <text x="46" y="44" fill="#A5B4FC" class="mono" font-size="12">Пакет: com.zilore.core.fs.* • User-Space USB Bulk SCSI (No-Root) • 5 Clouds &amp; Local Servers • AES-256</text>
+    <text x="46" y="44" fill="#A5B4FC" class="mono" font-size="12">Пакет: com.zilore.core.fs.* • User-Space USB Bulk SCSI (No-Root) • 5 Clouds &amp; WebStudio Assets • AES-256</text>
   </g>
   <line x1="480" y1="90" x2="480" y2="536" stroke="#10B981" stroke-width="2.5" class="scsi-bus"/>
   <line x1="36" y1="312" x2="924" y2="312" stroke="#818CF8" stroke-width="2.5" class="scsi-bus"/>
@@ -41,7 +42,7 @@
     <text x="22" y="28" fill="#A5B4FC" class="mono" font-size="14" font-weight="800">3. network/ — СЕТИ, 5 ОБЛАКОВ И СЕРВЕРЫ</text>
     <rect x="20" y="42" width="196" height="70" rx="10" fill="#060A14" stroke="#1E293B"/><text x="32" y="64" fill="#FFFFFF" class="mono" font-size="13" font-weight="700">SFTP • SMB • WebDAV</text><text x="32" y="83" fill="#A5B4FC" class="mono" font-size="11.5">JSch SSH/PTY • SMBv3</text><text x="32" y="100" fill="#94A3B8" class="mono" font-size="10.5">+ FtpServiceModule</text>
     <rect x="226" y="42" width="196" height="70" rx="10" fill="#060A14" stroke="#1E293B"/><text x="238" y="64" fill="#38BDF8" class="mono" font-size="13" font-weight="700">5 Облачных модулей</text><text x="238" y="83" fill="#67E8F9" class="mono" font-size="11.5">GDrive • Dropbox • Yandex</text><text x="238" y="100" fill="#94A3B8" class="mono" font-size="10.5">MailRuCloud • NextCloud</text>
-    <rect x="20" y="122" width="196" height="72" rx="10" fill="#060A14" stroke="#1E293B"/><text x="32" y="144" fill="#34D399" class="mono" font-size="13" font-weight="700">Wi-Fi Studio &amp; Превью</text><text x="32" y="163" fill="#6EE7B7" class="mono" font-size="11.5">WebThumbnailRenderer</text><text x="32" y="180" fill="#94A3B8" class="mono" font-size="10.5">+ Embedded FTP &amp; WebDAV</text>
+    <rect x="20" y="122" width="196" height="72" rx="10" fill="#060A14" stroke="#1E293B"/><text x="32" y="144" fill="#34D399" class="mono" font-size="13" font-weight="700">Wi-Fi Studio &amp; Превью</text><text x="32" y="163" fill="#6EE7B7" class="mono" font-size="11.5">assets/webstudio/index.html</text><text x="32" y="180" fill="#94A3B8" class="mono" font-size="10.5">+ WebThumbnailRenderer</text>
     <rect x="226" y="122" width="196" height="72" rx="10" fill="#060A14" stroke="#1E293B"/><text x="238" y="144" fill="#FBBF24" class="mono" font-size="13" font-weight="700">DLNA &amp; StreamProxy</text><text x="238" y="163" fill="#FDE68A" class="mono" font-size="11.5">ZiloreDlnaCastServer</text><text x="238" y="180" fill="#94A3B8" class="mono" font-size="10.5">HTTP Range Video Proxy</text>
   </g>
   <g transform="translate(496, 326)">

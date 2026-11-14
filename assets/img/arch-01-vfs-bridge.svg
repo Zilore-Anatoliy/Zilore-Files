@@ -13,6 +13,7 @@
       @keyframes streamBackward { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 40; } }
       .flow-fwd { stroke-dasharray: 10 10; animation: streamForward 1.1s linear infinite; }
       .flow-bwd { stroke-dasharray: 10 10; animation: streamBackward 1.2s linear infinite; }
+      @media (prefers-reduced-motion: reduce) { .flow-fwd, .flow-bwd { animation: none !important; } }
     </style>
   </defs>
   <rect width="960" height="360" rx="20" fill="url(#bg1)"/>
@@ -34,11 +35,11 @@
     <rect width="270" height="248" rx="16" fill="#091122" stroke="url(#cyanGrad)" stroke-width="2.5"/>
     <rect x="14" y="14" width="242" height="44" rx="10" fill="#0E2238" stroke="#06B6D4" stroke-width="1.2"/>
     <text x="135" y="34" fill="#FFFFFF" class="mono" font-size="15" font-weight="800" text-anchor="middle">МОДУЛЬ :app</text>
-    <text x="135" y="50" fill="#67E8F9" class="mono" font-size="11.5" text-anchor="middle">UI Layer &amp; System Services</text>
-    <rect x="16" y="70" width="238" height="36" rx="8" fill="#060B16" stroke="#1E293B"/><text x="28" y="93" fill="#F8FAFC" class="mono" font-size="12.5" font-weight="700">1. DualPaneCommander &amp; TV</text>
+    <text x="135" y="50" fill="#67E8F9" class="mono" font-size="11.5" text-anchor="middle">UI • FileViewerRouter • TV</text>
+    <rect x="16" y="70" width="238" height="36" rx="8" fill="#060B16" stroke="#1E293B"/><text x="28" y="93" fill="#F8FAFC" class="mono" font-size="12.5" font-weight="700">1. DualPane &amp; ViewerRouter</text>
     <rect x="16" y="114" width="238" height="36" rx="8" fill="#060B16" stroke="#1E293B"/><text x="28" y="137" fill="#34D399" class="mono" font-size="12.5" font-weight="700">2. VideoPlayer &amp; AudioEngine</text>
     <rect x="16" y="158" width="238" height="36" rx="8" fill="#060B16" stroke="#1E293B"/><text x="28" y="181" fill="#FBBF24" class="mono" font-size="12.5" font-weight="700">3. Word • Excel • PDF • HEX</text>
-    <rect x="16" y="202" width="238" height="34" rx="8" fill="#060B16" stroke="#1E293B"/><text x="28" y="224" fill="#A5B4FC" class="mono" font-size="12" font-weight="700">4. APKS Installer &amp; Audit</text>
+    <rect x="16" y="202" width="238" height="34" rx="8" fill="#060B16" stroke="#1E293B"/><text x="28" y="224" fill="#A5B4FC" class="mono" font-size="12" font-weight="700">4. BiometricGuard &amp; Auditor</text>
   </g>
   <g transform="translate(366, 86)">
     <rect width="228" height="248" rx="18" fill="#081520" stroke="url(#emeraldGrad)" stroke-width="2.8"/>

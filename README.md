@@ -3,7 +3,7 @@
     <img src="./assets/img/zilore_avatar_4k.svg" alt="Zilore Files Logo" width="144" height="144" />
   </a>
   <h1>⚡ Zilore Files</h1>
-  <p><strong>Системный двухпанельный файловый менеджер, сетевой хаб и аппаратный медиа-комбайн для Android &amp; Android TV</strong></p>
+  <p><strong>Системный двухпанельный файловый менеджер, сетевой хаб и аппаратный медиа-комбайн для Android &amp; Android TV (Android 8.0 – 17 Ready)</strong></p>
   <p>
     <a href="https://zilore.app"><img src="https://img.shields.io/badge/Website-zilore.app-06B6D4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website zilore.app" /></a>
     <a href="https://t.me/zilorefiles"><img src="https://img.shields.io/badge/Telegram-@zilorefiles-0284C7?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram Channel" /></a>
@@ -18,7 +18,7 @@
 ### 1. Полнодуплексный мост данных `Zilore VFS Bridge`
 <p align="center"><img src="./assets/img/arch-01-vfs-bridge.svg" alt="Мост данных Zilore VFS" width="100%" /></p>
 
-### 2. Пользовательский модуль `:app` (UI Screens, 4K Android TV Studio & Diagnostics)
+### 2. Пользовательский модуль `:app` (UI Screens, FileViewerRouter, 4K TV Studio & BiometricGuard)
 <p align="center"><img src="./assets/img/arch-02-app-module.svg" alt="Архитектура модуля :app" width="100%" /></p>
 
 ### 3. Низкоуровневое ядро `:core:fs-engine` (VFS, USB SCSI, 5 Clouds & CryptoVault)

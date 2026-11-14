@@ -1,11 +1,11 @@
-import { loadLeftPreset, loadRightPreset, moveDpad, switchActivePane, triggerSelectedFileAction, setUIMode, openQuickTool, closeQuickTool } from './modules/simulator.js';
+import { loadLeftPreset, loadRightPreset } from './modules/simulator.js';
 import { fillSampleHash, copyOfficialHash, downloadSha256File, verifyApkHash, calculateLocalFileHash } from './modules/sha256-verifier.js';
-import { showToast, copyTextToClipboard, copyRoseConfigCommands, downloadSvgBrandAsset } from './modules/brand-exporter.js';
+import { showToast, copyTextToClipboard } from './modules/brand-exporter.js';
 
 Object.assign(window, {
-    loadLeftPreset, loadRightPreset, moveDpad, switchActivePane, triggerSelectedFileAction, setUIMode, openQuickTool, closeQuickTool,
+    loadLeftPreset, loadRightPreset,
     fillSampleHash, copyOfficialHash, downloadSha256File, verifyApkHash, calculateLocalFileHash,
-    copyTextToClipboard, copyRoseConfigCommands, downloadSvgBrandAsset,
+    copyTextToClipboard,
     triggerDownloadToast: (f) => showToast('Запрос сборки ' + f)
 });
 

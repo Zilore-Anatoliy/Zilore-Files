@@ -1,5 +1,4 @@
-import { leftPresets, rightPresets, getQuickToolConfig } from '../data/vfs-presets.js';
-import { showToast } from './brand-exporter.js';
+import { leftPresets, rightPresets } from '../data/vfs-presets.js';
 
 let activePane = 'left';
 let activeLeftKey = 'usb_ntfs';
@@ -25,16 +24,14 @@ export function renderFileList(pane) {
             updateInspector(file);
             renderFileList('left'); renderFileList('right');
         };
-        const leftPart = document.createElement('div');
-        leftPart.className = 'flex items-center gap-2.5 min-w-0';
         const nameSpan = document.createElement('span');
         nameSpan.className = 'truncate font-medium';
         nameSpan.textContent = file.name;
-        leftPart.appendChild(nameSpan);
         const sizeSpan = document.createElement('span');
         sizeSpan.className = 'text-[11px] text-slate-400 shrink-0';
         sizeSpan.textContent = file.size;
-        row.appendChild(leftPart); row.appendChild(sizeSpan);
+        row.appendChild(nameSpan);
+        row.appendChild(sizeSpan);
         fragment.appendChild(row);
     });
     container.textContent = '';
@@ -47,7 +44,7 @@ export function updateInspector(file) {
     const metaEl = document.getElementById('inspectorMeta');
     if (nameEl) nameEl.textContent = file.name;
     if (metaEl) {
-        metaEl.innerHTML = `<div>Размер: <span class="text-slate-200">${file.size}</span></div><div>Поток: <span class="text-emerald-400">${file.stream}</span></div><div>Экран: <span class="text-cyan-300">${file.audio}</span></div>`;
+        metaEl.innerHTML = `<div>Размер: <span class="text-slate-200">${file.size}</span></div><div>Поток: <span class="text-emerald-400">${file.stream}</span></div><div>Маршрут: <span class="text-cyan-300">${file.audio}</span></div>`;
     }
 }
 
@@ -67,48 +64,4 @@ export function loadRightPreset(key) {
     document.getElementById('rightPaneSubstatus').textContent = rightPresets[key].substatus;
     updateInspector(rightPresets[key].files[0]);
     renderFileList('left'); renderFileList('right');
-}
-
-export function moveDpad(delta) {
-    const items = activePane === 'left' ? leftPresets[activeLeftKey].files : rightPresets[activeRightKey].files;
-    if (activePane === 'left') {
-        leftFocusIndex = (leftFocusIndex + delta + items.length) % items.length;
-        updateInspector(items[leftFocusIndex]);
-    } else {
-        rightFocusIndex = (rightFocusIndex + delta + items.length) % items.length;
-        updateInspector(items[rightFocusIndex]);
-    }
-    renderFileList('left'); renderFileList('right');
-}
-
-export function switchActivePane() {
-    activePane = activePane === 'left' ? 'right' : 'left';
-    renderFileList('left'); renderFileList('right');
-}
-
-export function triggerSelectedFileAction() {
-    const items = activePane === 'left' ? leftPresets[activeLeftKey].files : rightPresets[activeRightKey].files;
-    const idx = activePane === 'left' ? leftFocusIndex : rightFocusIndex;
-    const file = items[idx];
-    if (file) openQuickTool(file.type === 'video' ? 'player' : 'office', file.name);
-}
-
-export function setUIMode(mode) {
-    const rightPane = document.getElementById('rightPaneBox');
-    if (rightPane) rightPane.classList.toggle('hidden', mode === 'mobile');
-}
-
-export function openQuickTool(tool, fileName) {
-    const overlay = document.getElementById('simulatorOverlay');
-    const title = document.getElementById('overlayTitle');
-    const content = document.getElementById('overlayContent');
-    if (!overlay || !title || !content) return;
-    overlay.classList.remove('hidden');
-    const cfg = getQuickToolConfig(tool, fileName || document.getElementById('inspectorName')?.textContent || '');
-    title.textContent = cfg.t;
-    content.textContent = cfg.c;
-}
-
-export function closeQuickTool() {
-    document.getElementById('simulatorOverlay')?.classList.add('hidden');
 }

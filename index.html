@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#060911">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
     <link rel="canonical" href="https://zilore.app/">
     <link rel="icon" type="image/svg+xml" href="./assets/img/zilore_avatar_4k.svg">
     <title>Zilore Files (zilore.app) — Системный файловый менеджер, сетевой хаб и медиа-комбайн для Android &amp; Android TV</title>
@@ -50,48 +54,42 @@
         <section id="preview" class="space-y-6">
             <div class="text-center max-w-4xl mx-auto space-y-3">
                 <h1 class="text-3xl sm:text-5xl font-extrabold text-white">Системный файловый менеджер, сетевой хаб и <span class="text-cyan-400">медиа-комбайн для Android &amp; TV</span></h1>
-                <p class="text-slate-300 text-sm sm:text-base">Модульное ядро <code class="text-cyan-300 font-mono">:core:fs-engine</code>, драйвер <code class="text-emerald-300 font-mono">UsbBulkScsiEngine</code> (EXT4/NTFS/exFAT без Root), 5 облачных хранилищ (GDrive, Dropbox, Yandex, Mail.ru, NextCloud) и плеер AV1 / Dolby Vision.</p>
+                <p class="text-slate-300 text-sm sm:text-base">Модульное ядро <code class="text-cyan-300 font-mono">:core:fs-engine</code>, драйвер <code class="text-emerald-300 font-mono">UsbBulkScsiEngine</code> (EXT4/NTFS/exFAT без Root), 5 облачных хранилищ (GDrive, Dropbox, Yandex, Mail.ru, NextCloud), <code class="text-indigo-300 font-mono">FileViewerRouter</code> и <code class="text-emerald-300 font-mono">BiometricGuard</code> (Android 8.0–17).</p>
             </div>
 
-            <div id="simulatorContainer" class="rounded-2xl glass-panel border border-slate-700/80 overflow-hidden shadow-2xl">
+            <div class="rounded-2xl glass-panel border border-slate-700/80 overflow-hidden shadow-2xl">
                 <div class="bg-obsidian-900 border-b border-slate-800 px-4 py-2.5 flex flex-wrap items-center gap-2 text-xs font-mono">
                     <button type="button" onclick="loadLeftPreset('usb_ntfs')" class="px-2.5 py-1 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/40">USB OTG (NTFS)</button>
                     <button type="button" onclick="loadLeftPreset('ext4_drive')" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300">NVMe (EXT4)</button>
-                    <button type="button" onclick="loadLeftPreset('internal')" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300">SAF &amp; CryptoVault</button>
-                    <button type="button" onclick="loadRightPreset('cloud_hub')" class="ml-auto px-2.5 py-1 rounded bg-slate-800 text-sky-300 border border-sky-500/30">5 Облаков (Dropbox / GDrive / Yandex)</button>
+                    <button type="button" onclick="loadLeftPreset('internal')" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300">Biometric &amp; CryptoVault</button>
+                    <button type="button" onclick="loadRightPreset('sftp_nas')" class="ml-auto px-2.5 py-1 rounded bg-indigo-500/15 text-indigo-300 border border-indigo-500/40">SFTP / SMB NAS</button>
+                    <button type="button" onclick="loadRightPreset('cloud_hub')" class="px-2.5 py-1 rounded bg-slate-800 text-sky-300 border border-sky-500/30">5 Облаков (Dropbox / GDrive / Yandex)</button>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[360px] divide-y lg:divide-y-0 lg:divide-x divide-slate-800">
-                    <div id="leftPaneBox" class="lg:col-span-4 xl:col-span-5 p-3 flex flex-col min-w-0">
+                    <div class="lg:col-span-4 xl:col-span-5 p-3 flex flex-col min-w-0">
                         <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 font-mono text-xs">
                             <span id="leftPanePath" class="text-cyan-300 truncate">vfs://usb-scsi-01/Samsung_T7_NTFS/</span>
                             <span id="leftFsBadge" class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300">UsbBulkScsiEngine</span>
                         </div>
                         <div id="leftFileList" class="space-y-1 flex-1"></div>
                     </div>
-                    <div id="rightPaneBox" class="lg:col-span-4 xl:col-span-4 p-3 flex flex-col min-w-0">
+                    <div class="lg:col-span-4 xl:col-span-4 p-3 flex flex-col min-w-0">
                         <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 font-mono text-xs">
                             <span id="rightPanePath" class="text-indigo-300 truncate">sftp://root@192.168.1.100:22/mnt/nas_vault/</span>
                         </div>
                         <div id="rightPaneSubstatus" class="text-[11px] font-mono text-slate-400 pb-2 truncate">SftpServiceModule + RemoteStreamProxy</div>
                         <div id="rightFileList" class="space-y-1 flex-1"></div>
                     </div>
-                    <div id="inspectorPaneBox" class="lg:col-span-4 xl:col-span-3 p-3.5 bg-obsidian-950/80 flex flex-col justify-between min-w-0">
+                    <div class="lg:col-span-4 xl:col-span-3 p-3.5 bg-obsidian-950/80 flex flex-col justify-between min-w-0">
                         <div>
-                            <div class="text-[10px] font-mono uppercase text-slate-400 mb-2">BinaryHeaderInspector</div>
+                            <div class="text-[10px] font-mono uppercase text-slate-400 mb-2">FileViewerRouter &amp; Inspector</div>
                             <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 mb-3">
                                 <div id="inspectorName" class="font-mono text-xs font-bold text-white break-tech mb-2">Dune.Part.Two.2160p.DV.AV1.mkv</div>
                                 <div id="inspectorMeta" class="text-[11px] font-mono text-slate-400 space-y-1 pt-2 border-t border-slate-800"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="simulatorOverlay" class="hidden bg-obsidian-950 border-t border-cyan-500/40 p-4 font-mono text-xs">
-                    <div class="flex items-center justify-between mb-1">
-                        <strong id="overlayTitle" class="text-cyan-300">Активный модуль</strong>
-                        <button type="button" onclick="closeQuickTool()" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">Закрыть</button>
-                    </div>
-                    <p id="overlayContent" class="text-slate-300"></p>
                 </div>
             </div>
         </section>
@@ -103,8 +101,21 @@
             <img src="./assets/img/arch-03-core-engine.svg" alt="Архитектура ядра :core:fs-engine" class="w-full rounded-2xl border border-slate-800" />
         </section>
 
+        <section id="telegram-hub" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-panel rounded-2xl p-6 border border-sky-500/30 space-y-3">
+                <h2 class="text-lg font-bold text-white">📢 Официальный Канал (@zilorefiles)</h2>
+                <p class="text-xs text-slate-300">Витрина проверенных APK-сборок, списки изменений CHANGELOG и контрольные суммы SHA-256.</p>
+                <a href="https://t.me/zilorefiles" target="_blank" rel="noopener noreferrer" class="inline-block px-4 py-2 rounded-xl bg-sky-500/20 text-sky-300 border border-sky-500/40 font-mono text-xs font-bold">Открыть @zilorefiles</a>
+            </div>
+            <div class="glass-panel rounded-2xl p-6 border border-indigo-500/30 space-y-3">
+                <h2 class="text-lg font-bold text-white">💬 Технический Форум (@zilorechat)</h2>
+                <p class="text-xs text-slate-300">Тематические ветки по Android TV, USB SCSI и сетям. Полный запрет спама, сторонних APK и политики.</p>
+                <a href="https://t.me/zilorechat" target="_blank" rel="noopener noreferrer" class="inline-block px-4 py-2 rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 font-mono text-xs font-bold">Открыть форум @zilorechat</a>
+            </div>
+        </section>
+
         <section id="security-audit" class="glass-panel rounded-2xl p-6 border border-emerald-500/30 space-y-4">
-            <h2 class="text-xl font-bold text-white">Локальный сверщик контрольной суммы SHA-256</h2>
+            <h2 class="text-xl font-bold text-white">🛡 Локальный сверщик контрольной суммы SHA-256</h2>
             <div class="p-3.5 rounded-xl bg-obsidian-950 border border-slate-800 font-mono text-xs space-y-1.5">
                 <div class="flex flex-wrap items-center justify-between gap-2 text-slate-400">
                     <span>Эталонный SHA-256 (ZiloreFiles-universal.apk):</span>
